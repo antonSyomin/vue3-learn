@@ -8,8 +8,9 @@
   import TheProgress from './pages/TheProgress.vue'
   import { normailzePageHash, generateTimelineItems } from './functions.js'
 
-  const currentPage = ref(normailzePageHash());
+  const currentPage = ref(normailzePageHash())
   const timelineItems = generateTimelineItems()
+  const activities = ['Coding', 'Reading', 'Training']
 
   function goTo(page)
   {
@@ -25,7 +26,7 @@
 
   <main class='flex flex-grow flex-col'>
     <TheTimeline v-show='currentPage === PAGE_TIMELINE' :timeline-items="timelineItems"/>
-    <TheActivities v-show='currentPage === PAGE_ACTIVITIES'/>
+    <TheActivities v-show='currentPage === PAGE_ACTIVITIES' :activities="activities"/>
     <TheProgress v-show='currentPage === PAGE_PROGRESS'/>
   </main>
 

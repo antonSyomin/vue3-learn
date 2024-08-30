@@ -3,28 +3,16 @@ import { ref } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/solid'
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
+import { PERIOD_SELECT_OPTIONS } from '../constants.js' 
+import { isActivityValid } from '../validators.js'
 
 defineProps({
     activity: {
         required: true,
-        type: String
+        type: String,
+        validator: isActivityValid
     }
 })
-
-const PeriodSelectOptions = [
-    {
-        value: 15,
-        label: '0:15'
-    },
-    {
-        value: 30,
-        label: '0:30'
-    },
-    {
-        value: 45,
-        label: '0:45'
-    },
-]
 
 const secondsToComplete = ref(null)
 
@@ -42,7 +30,7 @@ const secondsToComplete = ref(null)
                 class="font-mono" 
                 placeholder="h:mm" 
                 :selected="secondsToComplete" 
-                :options="PeriodSelectOptions"
+                :options="PERIOD_SELECT_OPTIONS"
                 @select="secondsToComplete = $event"
             />
         </div>
