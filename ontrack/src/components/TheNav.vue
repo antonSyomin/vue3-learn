@@ -3,6 +3,7 @@
     import { NAV_ITEMS } from '../constants'
     import {isPageValid} from '../validators.js'
 
+
     defineProps({
         currentPage: {
             required: true,
