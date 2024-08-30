@@ -5,7 +5,11 @@
     defineProps({
         currentPage: {
             required: true,
-            type: String
+            type: String,
+            validator(currentPage) {
+                return Object.keys(NAV_ITEMS).includes(currentPage)
+            }
+
         }
     })
 
