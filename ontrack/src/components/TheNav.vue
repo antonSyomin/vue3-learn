@@ -1,5 +1,6 @@
 <script setup>
     import NavItem from './NavItem.vue'
+    import { NAV_ITEMS } from '../constants'
     import {isPageValid} from '../validators.js'
 
     defineProps({
@@ -10,7 +11,9 @@
         }
     })
 
-    const emit = defineEmits(['navigate'])
+    const emit = defineEmits({
+        navigate: isPageValid
+    })
 </script>
 <template>
     <nav class='sticky bottom-0 bg-white z-10 text-3xl'>
