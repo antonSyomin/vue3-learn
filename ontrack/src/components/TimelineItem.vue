@@ -17,8 +17,6 @@ const selectedActivityId = ref(1)
     <li 
         class='relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4'>
         <TimelineHour :hour="timelineItem.hour"/>
-        <div class='flex gap-2'>
-            <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" @select="selectedActivityId = $event"/>
-        </div>
+        <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" @select="selectedActivityId = $event"/>
     </li>
 </template>
