@@ -14,11 +14,16 @@ import {
 
 const currentPage = ref(normailzePageHash())
 const timelineItems = generateTimelineItems()
-const activities = ['Coding', 'Reading', 'Training']
-const activitySelectOptions = generateactivitySelectOptions(activities)
+const activities = ref(['Coding', 'Reading', 'Training'])
+window.console.log(activities)
+const activitySelectOptions = generateactivitySelectOptions(activities.value)
 
 function goTo(page) {
   currentPage.value = page
+}
+
+function deleteActivity(activity) {
+  activities.value.splice(activities.value.indexOf(activity), 1)
 }
 </script>
 
@@ -31,7 +36,11 @@ function goTo(page) {
       :timeline-items="timelineItems"
       :activity-select-options="activitySelectOptions"
     />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheActivities
+      v-show="currentPage === PAGE_ACTIVITIES"
+      :activities="activities"
+      @delete-activity="deleteActivity"
+    />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
