@@ -15,7 +15,6 @@ import {
 const currentPage = ref(normailzePageHash())
 const timelineItems = generateTimelineItems()
 const activities = ref(['Coding', 'Reading', 'Training'])
-window.console.log(activities)
 const activitySelectOptions = generateactivitySelectOptions(activities.value)
 
 function goTo(page) {
