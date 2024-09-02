@@ -14,6 +14,9 @@ export function validateActivities(activities) {
 }
 
 export function isActivityValid({ id, name, secondsToComplete }) {
+  if (isNull(id)) {
+    return true
+  }
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 

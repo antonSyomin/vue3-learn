@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
+import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS, NULLABLE_ACTIVITY } from './constants'
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
 import TheTimeline from './pages/TheTimeline.vue'
@@ -31,8 +31,8 @@ function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity?.id || null
+function setTimelineItemActivity(timelineItem, activity) {
+  timelineItem.activityId = activity.id
 }
 
 function createActivity(activity) {
