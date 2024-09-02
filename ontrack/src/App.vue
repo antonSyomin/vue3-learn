@@ -14,7 +14,7 @@ import {
 } from './functions.js'
 
 const currentPage = ref(normailzePageHash())
-const timelineItems = generateTimelineItems()
+const timelineItems = ref(generateTimelineItems())
 const activities = ref(generateActivities())
 const activitySelectOptions = computed(() => generateactivitySelectOptions(activities.value))
 
@@ -23,7 +23,7 @@ function goTo(page) {
 }
 
 function deleteActivity(activity) {
-  timelineItems.forEach((timelineItem) => {
+  timelineItems.value.forEach((timelineItem) => {
     if (timelineItem.activityId === activity.id) {
       timelineItem.activityId = null
     }
@@ -32,7 +32,7 @@ function deleteActivity(activity) {
 }
 
 function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity.id
+  timelineItem.activityId = activity?.id || null
 }
 
 function createActivity(activity) {
