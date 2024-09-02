@@ -18,7 +18,7 @@ defineProps({
   }
 })
 
-const secondsToComplete = ref(null)
+const secondsToComplete = ref(0)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-4">

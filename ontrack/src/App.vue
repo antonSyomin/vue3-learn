@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
@@ -7,7 +7,6 @@ import TheTimeline from './pages/TheTimeline.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import {
-  id,
   generateActivities,
   normailzePageHash,
   generateTimelineItems,
@@ -17,7 +16,7 @@ import {
 const currentPage = ref(normailzePageHash())
 const timelineItems = generateTimelineItems()
 const activities = ref(generateActivities())
-const activitySelectOptions = generateactivitySelectOptions(activities.value)
+const activitySelectOptions = computed(() => generateactivitySelectOptions(activities.value))
 
 function goTo(page) {
   currentPage.value = page
