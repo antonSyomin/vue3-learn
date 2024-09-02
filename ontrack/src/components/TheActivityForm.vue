@@ -1,4 +1,5 @@
 <script setup>
+import { id } from '../functions'
 import { nextTick, ref } from 'vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import BaseButton from './BaseButton.vue'
@@ -9,13 +10,16 @@ const emit = defineEmits({
 })
 
 async function submit() {
-  emit('submit', activity.value)
-  activity.value = ''
+  emit('submit', {
+    id: id(),
+    name: name.value,
+    secondsToComplete: 0
+  })
   await nextTick()
   window.scrollTo(0, document.body.scrollHeight)
 }
 
-const activity = ref('')
+const name = ref('')
 </script>
 <template>
   <form @submit.prevent="submit" class="sticky bottom-[57px] flex gap-2 border-t bg-white p-4">
@@ -23,9 +27,9 @@ const activity = ref('')
       type="text"
       class="w-full rounded border px-4 text-xl"
       placeholder="Activity name"
-      v-model="activity"
+      v-model="name"
     />
-    <BaseButton :disabled="activity.trim() === ''">
+    <BaseButton :disabled="name.trim() === ''">
       <PlusIcon class="h-8" />
     </BaseButton>
   </form>
