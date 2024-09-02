@@ -14,8 +14,8 @@ import {
 } from './functions.js'
 
 const currentPage = ref(normailzePageHash())
-const timelineItems = ref(generateTimelineItems())
 const activities = ref(generateActivities())
+const timelineItems = ref(generateTimelineItems(activities.value))
 const activitySelectOptions = computed(() => generateactivitySelectOptions(activities.value))
 
 function goTo(page) {
@@ -26,6 +26,7 @@ function deleteActivity(activity) {
   timelineItems.value.forEach((timelineItem) => {
     if (timelineItem.activityId === activity.id) {
       timelineItem.activityId = null
+      timelineItem.activitySeconds = 0
     }
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
