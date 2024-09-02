@@ -48,6 +48,10 @@ function createActivity(activity) {
   activities.value.push(activity)
 }
 
+function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+  timelineItem.activitySeconds += activitySeconds
+}
+
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
@@ -64,6 +68,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activity-select-options="activitySelectOptions"
       :current-page="currentPage"
       ref="timeline"
+      @update-timeline-item-activity-seconds="updateTimelineItemActivitySeconds"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
