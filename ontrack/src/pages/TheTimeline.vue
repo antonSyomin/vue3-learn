@@ -8,8 +8,7 @@ import {
   validateActivities,
   isTimelineItemValid,
   isActivityValid,
-  isPageValid,
-  isNull
+  isPageValid
 } from '../validators'
 
 const props = defineProps({
@@ -42,19 +41,19 @@ const emit = defineEmits({
 })
 
 const timelineItemRefs = ref([])
+
 watchPostEffect(async () => {
   if (props.currentPage === PAGE_TIMELINE) {
     await nextTick()
-    scrollToCurrentTimelineItem()
+    scrollToHour(new Date().getHours())
   }
 })
 
-function scrollToCurrentTimelineItem() {
-  const currentHour = new Date().getHours()
-  if (currentHour === MIDNIGHT_HOUR) {
+function scrollToHour(hour) {
+  if (hour === MIDNIGHT_HOUR) {
     document.body.scrollIntoView()
   } else {
-    timelineItemRefs.value[currentHour - 1].$el.scrollIntoView()
+    timelineItemRefs.value[hour - 1].$el.scrollIntoView()
   }
 }
 </script>
@@ -69,6 +68,7 @@ function scrollToCurrentTimelineItem() {
         :activities="activities"
         :activity-select-options="activitySelectOptions"
         ref="timelineItemRefs"
+        @scroll-to-hour="scrollToHour"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
       />
     </ul>
