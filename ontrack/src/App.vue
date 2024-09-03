@@ -11,7 +11,8 @@ import {
   generateActivities,
   normailzePageHash,
   generateTimelineItems,
-  generateactivitySelectOptions
+  generateActivitySelectOptions,
+  generatePeriodSelectOptions
 } from './functions.js'
 
 const currentPage = ref(normailzePageHash())
@@ -19,7 +20,7 @@ const activities = ref(generateActivities())
 const timelineItems = ref(generateTimelineItems(activities.value))
 const timeline = ref()
 
-const activitySelectOptions = computed(() => generateactivitySelectOptions(activities.value))
+const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
@@ -59,6 +60,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('activitySelectOptions', activitySelectOptions.value)
+provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)
 </script>
