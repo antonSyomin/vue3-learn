@@ -1,9 +1,4 @@
-import {
-  MILLISECONDS_IN_SECOND,
-  SECONDS_IN_HOUR,
-  SECONDS_IN_MINUTE,
-  MINUTES_IN_HOUR
-} from './constants'
+import { MILLISECONDS_IN_SECOND, SECONDS_IN_MINUTE, MINUTES_IN_HOUR } from './constants'
 import { isNull } from './validators'
 
 export function getTotalActivitySeconds(activity, timelineItems) {
@@ -13,18 +8,6 @@ export function getTotalActivitySeconds(activity, timelineItems) {
       (totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds),
       0
     )
-}
-
-export function generateActivitySelectOptions(activities) {
-  return activities.map((activity) => ({ value: activity.id, label: activity.name }))
-}
-
-export function generateActivities() {
-  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
-    id: id(),
-    name,
-    secondsToComplete: hours * SECONDS_IN_HOUR
-  }))
 }
 
 export function id() {
