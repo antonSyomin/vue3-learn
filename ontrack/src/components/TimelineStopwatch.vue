@@ -1,5 +1,5 @@
 <script setup>
-import { ref, inject } from 'vue'
+import { ref } from 'vue'
 import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
 import {
   MILLISECONDS_IN_SECOND,
@@ -9,7 +9,7 @@ import {
 } from '../constants'
 import { currentHour, formatSeconds } from '../functions'
 import { isTimelineItemValid } from '../validators'
-import { updateTimelineItemActivitySecondsKey } from '../keys'
+import { updateTimelineItemActivitySeconds } from '../timeline-items'
 import BaseButton from './BaseButton.vue'
 const props = defineProps({
   timelineItem: {
@@ -19,7 +19,6 @@ const props = defineProps({
   }
 })
 
-const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)
 const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
