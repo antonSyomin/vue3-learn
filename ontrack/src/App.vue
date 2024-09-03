@@ -42,8 +42,8 @@ function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-function setTimelineItemActivity(timelineItem, activity) {
-  timelineItem.activityId = activity.id
+function setTimelineItemActivity(timelineItem, activityId) {
+  timelineItem.activityId = activityId
 }
 
 function createActivity(activity) {
@@ -59,10 +59,10 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 }
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('setTimelineItemActivity', setTimelineItemActivity)
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('timelineItems', timelineItems.value)
-provide('activities', activities.value)
 </script>
 
 <template>
@@ -74,7 +74,6 @@ provide('activities', activities.value)
       :timeline-items="timelineItems"
       :current-page="currentPage"
       ref="timeline"
-      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
