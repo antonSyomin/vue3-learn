@@ -5,6 +5,7 @@ import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import { BUTTON_TYPE_DANGER } from '../constants'
 import { isActivityValid } from '../validators'
+import { setActivitySecondsToCompleteKey, periodSelectOptionsKey, deleteActivityKey } from '../keys'
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
 
 defineProps({
@@ -14,9 +15,9 @@ defineProps({
     validator: isActivityValid
   }
 })
-const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
-const periodSelectOptions = inject('periodSelectOptions')
-const deleteActivity = inject('deleteActivity')
+const setActivitySecondsToComplete = inject(setActivitySecondsToCompleteKey)
+const periodSelectOptions = inject(periodSelectOptionsKey)
+const deleteActivity = inject(deleteActivityKey)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-4">
