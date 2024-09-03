@@ -1,23 +1,11 @@
 import {
-  PAGE_TIMELINE,
   MILLISECONDS_IN_SECOND,
   SECONDS_IN_HOUR,
   HOURS_IN_DAY,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR
 } from './constants'
-import { isPageValid, isNull } from './validators'
-
-export function normailzePageHash() {
-  const page = window.location.hash.slice(1)
-
-  if (isPageValid(page)) {
-    return page
-  }
-
-  window.location.hash = PAGE_TIMELINE
-  return PAGE_TIMELINE
-}
+import { isNull } from './validators'
 
 export function getTotalActivitySeconds(activity, timelineItems) {
   return timelineItems
