@@ -12,7 +12,8 @@ import { generatePeriodSelectOptions } from './functions'
 import {
   updateTimelineItemActivitySeconds,
   setTimelineItemActivity,
-  timelineItems
+  timelineItems,
+  resetTimelineItemActivities
 } from './timeline-items'
 
 import {
@@ -30,7 +31,10 @@ provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySec
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.createActivityKey, createActivity)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.timelineItemsKey, readonly(timelineItems))
