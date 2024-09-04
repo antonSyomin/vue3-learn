@@ -2,6 +2,7 @@
 import BaseButton from './BaseButton.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseIcon from './BaseIcon.vue'
+import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '../constants'
 import { ICON_TRASH } from '../icons'
 import { isActivityValid } from '../validators'
 import { updateActivity, deleteActivity } from '../activities'
