@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue'
+import { watchEffect } from 'vue'
 import { BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, BUTTON_TYPE_DANGER } from '../constants'
 import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '../icons'
 import { currentHour, formatSeconds } from '../functions'
@@ -16,16 +16,13 @@ const props = defineProps({
   }
 })
 
-const { seconds, isRunning, start, stop, reset } = useStopwatch(
-  props.timelineItem.activitySeconds,
-  updateTimelineItemActivitySeconds
-)
-watch(() => props.timelineItem.activityId, updateTimelineItemActivitySeconds)
-function updateTimelineItemActivitySeconds() {
+const { seconds, isRunning, start, stop, reset } = useStopwatch(props.timelineItem.activitySeconds)
+
+watchEffect(() =>
   updateTimelineItem(props.timelineItem, {
     activitySeconds: seconds.value
   })
-}
+)
 </script>
 
 <template>
@@ -34,7 +31,7 @@ function updateTimelineItemActivitySeconds() {
       <BaseIcon :name="ICON_ARROW_PATH" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">
-      {{ formatSeconds(seconds) }}
+      {{ formatSeconds(timelineItem.activitySeconds) }}
     </div>
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
       <BaseIcon :name="ICON_PAUSE" />
