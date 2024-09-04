@@ -7,7 +7,7 @@ import { ICON_TRASH } from '../icons'
 import { isActivityValid } from '../validators'
 import { updateActivity, deleteActivity } from '../activities'
 import { timelineItems, resetTimelineItemActivities } from '../timeline-items'
-import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
+import RemainingActivitySeconds from './RemainingActivitySeconds.vue'
 
 defineProps({
   activity: {
@@ -38,7 +38,7 @@ function deleteAndResetActivity(activity) {
         :selected="activity.secondsToComplete || null"
         @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       />
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
+      <RemainingActivitySeconds v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>
