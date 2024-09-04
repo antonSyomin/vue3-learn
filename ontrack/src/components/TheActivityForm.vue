@@ -1,5 +1,6 @@
 <script setup>
 import { ref, nextTick } from 'vue'
+import { ICON_PLUS } from '../icons'
 import { id } from '../functions'
 import { createActivity } from '../activities'
 import BaseButton from './BaseButton.vue'
@@ -26,7 +27,7 @@ async function submit() {
       v-model="name"
     />
     <BaseButton :disabled="name.trim() === ''">
-      <BaseIcon name="Plus" class="h-8" />
+      <BaseIcon :name="ICON_PLUS" class="h-8" />
     </BaseButton>
   </form>
 </template>
