@@ -43,10 +43,6 @@ function generatePeriodSelectOptionsLabel(periodInMinutes) {
   return `${hours}:${minutes}`
 }
 
-export function currentHour() {
-  return new Date().getHours()
-}
-
 export function formatSecondsWithSign(seconds) {
   return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
 }
